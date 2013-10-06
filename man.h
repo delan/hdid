@@ -11,6 +11,7 @@ enum hdid_man_t {
 	HDID_MAN_TOSHIBA,
 	HDID_MAN_CONNER,
 	HDID_MAN_QUANTUM,
+	HDID_MAN_IBM,
 };
 
 extern const char *const hdid_man_list[];

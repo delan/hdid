@@ -32,5 +32,6 @@ void hdid_print(struct hdid_info info);
 #include "toshiba.h"
 #include "hitachi.h"
 #include "wd.h"
+#include "ibm.h"
 
 #endif

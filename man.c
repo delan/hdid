@@ -10,4 +10,5 @@ const char *const hdid_man_list[] = {
 	"Toshiba Storage Device Division",
 	"Conner Peripherals",
 	"Quantum Corporation",
+	"International Business Machines Corporation",
 };

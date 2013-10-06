@@ -212,6 +212,12 @@ struct hdid_info hdid_identify(char *model) {
 			break;
 		}
 		break;
+	case 'I':
+		switch (model[1]) {
+		case 'C':
+			hdid_identify_ibm(&info, model);
+		}
+		break;
 	case 'K':
 		switch (model[1]) {
 		case 'A':
