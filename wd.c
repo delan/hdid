@@ -259,7 +259,7 @@ void hdid_wd_new_internal(struct hdid_info *info, const char *model) {
 			break;
 		case 'F':
 			info->family = HDID_FAMILY_WD_NAS;
-			info->sector_bytes = 512;
+			info->sector_bytes = 4096;
 			break;
 		case 'H':
 			info->family = HDID_FAMILY_WD_VR;
