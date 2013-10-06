@@ -11,8 +11,8 @@
 #include "wd.h"
 
 const char *hdid_wd_suffix(const char *model);
-void hdid_wd_old_internal(struct hdid_info *info, const char *model);
-void hdid_wd_new_internal(struct hdid_info *info, const char *model);
+void hdid_wd_2005_oem_internal(struct hdid_info *info, const char *model);
+void hdid_wd_new_oem_internal(struct hdid_info *info, const char *model);
 
 void hdid_identify_wd(struct hdid_info *info, const char *model) {
 	const char *suffix;
@@ -30,10 +30,10 @@ void hdid_identify_wd(struct hdid_info *info, const char *model) {
 			suffix = hdid_wd_suffix(model);
 			switch (strlen(suffix)) {
 			case 2:
-				hdid_wd_old_internal(info, model);
+				hdid_wd_2005_oem_internal(info, model);
 				break;
 			case 4:
-				hdid_wd_new_internal(info, model);
+				hdid_wd_new_oem_internal(info, model);
 				break;
 			case 5:
 			case 6:
@@ -65,7 +65,7 @@ const char *hdid_wd_suffix(const char *model) {
 	return model + i;
 }
 
-void hdid_wd_old_internal(struct hdid_info *info, const char *model) {
+void hdid_wd_2005_oem_internal(struct hdid_info *info, const char *model) {
 	const char *suffix = hdid_wd_suffix(model);
 	info->nominal_megabytes = atoi(model + 2) * 100;
 	info->sector_bytes = 512;
@@ -201,7 +201,7 @@ void hdid_wd_old_internal(struct hdid_info *info, const char *model) {
 	}
 }
 
-void hdid_wd_new_internal(struct hdid_info *info, const char *model) {
+void hdid_wd_new_oem_internal(struct hdid_info *info, const char *model) {
 	int raw_capacity = atoi(model + 2);
 	const char *suffix = hdid_wd_suffix(model);
 	if (raw_capacity >= 1000)
