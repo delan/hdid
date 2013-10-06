@@ -336,4 +336,20 @@ void hdid_print(struct hdid_info info) {
 		"Manufacturer:           %s\n",
 		hdid_man_list[info.manufacturer]
 	);
+	printf(
+		"Spindle speed:          %d rpm\n",
+		info.spindle_rpm
+	);
+	printf(
+		"Nominal capacity:       %f GB\n",
+		(float) info.nominal_megabytes / 1000
+	);
+	printf(
+		"Interface:              %s\n",
+		hdid_interface_list[info.interface]
+	);
+	printf(
+		"Form factor:            %s\n",
+		hdid_form_list[info.form]
+	);
 }

@@ -5,9 +5,15 @@
 #include <string.h>
 #include "util.h"
 #include "man.h"
+#include "interface.h"
+#include "form.h"
 
 struct hdid_info {
 	enum hdid_man_t manufacturer;
+	int spindle_rpm;
+	long nominal_megabytes;
+	enum hdid_interface_t interface;
+	enum hdid_form_t form;
 };
 
 struct hdid_info hdid_identify(char *model);

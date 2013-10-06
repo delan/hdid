@@ -1,11 +1,13 @@
-CFLAGS=-ansi -Wall -g
-hdid: hdid.o util.o core.o man.o \
+CFLAGS=-std=c99 -Wall -g
+hdid: hdid.o util.o core.o man.o interface.o form.o \
 	maxtor.o quantum.o seagate.o samsung.o \
 	conner.o toshiba.o hitachi.o wd.o
 hdid.o: hdid.c hdid.h
 util.o: util.c util.h
 core.o: core.c core.h
 man.o: man.c man.h
+interface.o: interface.c interface.h
+form.o: form.c form.h
 maxtor.o: maxtor.c maxtor.h
 quantum.o: quantum.c quantum.h
 seagate.o: seagate.c seagate.h
