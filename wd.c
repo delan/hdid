@@ -203,7 +203,7 @@ void hdid_wd_new_internal(struct hdid_info *info, const char *model) {
 			info->form = HDID_FORM_350_254;
 			break;
 		case 'F':
-			info->nominal_megabytes = raw_capacity * 100000;
+			info->nominal_megabytes = raw_capacity * 1000;
 			info->form = HDID_FORM_350_254;
 			break;
 		case 'G':
