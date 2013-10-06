@@ -179,6 +179,8 @@ void hdid_wd_old_internal(struct hdid_info *info, const char *model) {
 void hdid_wd_new_internal(struct hdid_info *info, const char *model) {
 	int raw_capacity = atoi(model + 2);
 	const char *suffix = hdid_wd_suffix(model);
+	if (raw_capacity >= 1000)
+		raw_capacity = raw_capacity / 10 * 10;
 	switch (suffix[0]) {
 		case 'A':
 			info->nominal_megabytes = raw_capacity * 100;
