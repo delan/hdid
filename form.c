@@ -2,6 +2,7 @@
 
 const char *const hdid_form_list[] = {
 	"(unknown)",
+	"1.0\"",
 	"1.8\"",
 	"1.8\" x 5.0 mm",
 	"1.8\" x 8.0 mm",

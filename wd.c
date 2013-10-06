@@ -13,6 +13,7 @@
 const char *hdid_wd_suffix(const char *model);
 void hdid_wd_2005_oem_internal(struct hdid_info *info, const char *model);
 void hdid_wd_new_oem_internal(struct hdid_info *info, const char *model);
+void hdid_wd_2009_retail_internal(struct hdid_info *info, const char *model);
 
 void hdid_identify_wd(struct hdid_info *info, const char *model) {
 	const char *suffix;
@@ -35,10 +36,9 @@ void hdid_identify_wd(struct hdid_info *info, const char *model) {
 			case 4:
 				hdid_wd_new_oem_internal(info, model);
 				break;
-			case 5:
-			case 6:
 			case 8:
 			case 9:
+				hdid_wd_2009_retail_internal(info, model);
 				break;
 			}
 		case 'A':
@@ -440,5 +440,170 @@ void hdid_wd_new_oem_internal(struct hdid_info *info, const char *model) {
 		case 'Z':
 			info->interface = HDID_INTERFACE_SATA3;
 			break;
+	}
+}
+
+void hdid_wd_2009_retail_internal(struct hdid_info *info, const char *model) {
+	int raw_capacity = atoi(model + 2);
+	const char *suffix = hdid_wd_suffix(model);
+	if (raw_capacity >= 1000)
+		raw_capacity = raw_capacity / 10 * 10;
+	switch (suffix[0]) {
+	case 'A':
+		info->nominal_megabytes = raw_capacity * 100;
+		info->form = HDID_FORM_350_254;
+		break;
+	case 'B':
+		info->nominal_megabytes = raw_capacity * 100;
+		info->form = HDID_FORM_250;
+		break;
+	case 'C':
+		info->nominal_megabytes = raw_capacity * 100;
+		info->form = HDID_FORM_100;
+		break;
+	case 'E':
+		info->nominal_megabytes = raw_capacity * 100000;
+		info->form = HDID_FORM_350_254;
+		break;
+	case 'F':
+		info->nominal_megabytes = raw_capacity * 1000;
+		info->form = HDID_FORM_350_254;
+		break;
+	case 'G':
+		info->nominal_megabytes = raw_capacity * 100;
+		info->form = HDID_FORM_250_350_INCORRECT;
+		break;
+	case 'H':
+		info->nominal_megabytes = raw_capacity * 100;
+		info->form = HDID_FORM_250_350_CORRECT;
+		break;
+	case 'J':
+		info->nominal_megabytes = raw_capacity * 100000;
+		info->form = HDID_FORM_250;
+		break;
+	}
+	switch (suffix[1]) {
+	case 'A':
+		info->family = HDID_FAMILY_WD_DESKTOP;
+		break;
+	case 'B':
+		info->family = HDID_FAMILY_WD_RE;
+		info->platters = 3;
+		break;
+	case 'C':
+		info->family = HDID_FAMILY_WD_PROTEGE;
+		break;
+	case 'D':
+		info->family = HDID_FAMILY_WD_RAPTOR;
+		break;
+	case 'E':
+		info->family = HDID_FAMILY_WD_MOBILE;
+		break;
+	case 'H':
+		info->family = HDID_FAMILY_WD_RAPTORX;
+		break;
+	case 'J':
+		info->family = HDID_FAMILY_WD_MOBILE;
+		break;
+	case 'K':
+		info->family = HDID_FAMILY_WD_S25;
+		break;
+	case 'L':
+		info->family = HDID_FAMILY_WD_VR;
+		break;
+	case 'M':
+		info->family = HDID_FAMILY_WD_BRAND;
+		break;
+	case 'V':
+		info->family = HDID_FAMILY_WD_AV;
+		break;
+	case 'Y':
+		info->family = HDID_FAMILY_WD_RE;
+		info->platters = 4;
+		break;
+	}
+	switch (suffix[2]) {
+	case 'A':
+		info->spindle_rpm = 5400;
+		info->cache_bytes = 2097152;
+		break;
+	case 'B':
+		info->spindle_rpm = 7200;
+		info->cache_bytes = 2097152;
+		break;
+	case 'C':
+		info->spindle_rpm = 5400;
+		info->cache_bytes = 16777216;
+		break;
+	case 'D':
+		info->spindle_rpm = 5400;
+		info->cache_bytes = 33554432;
+		break;
+	case 'F':
+		info->spindle_rpm = 10000;
+		info->cache_bytes = 16777216;
+		break;
+	case 'G':
+		info->spindle_rpm = 10000;
+		info->cache_bytes = 8388608;
+		break;
+	case 'H':
+		info->spindle_rpm = 10000;
+		info->cache_bytes = 33554432;
+		break;
+	case 'J':
+		info->spindle_rpm = 7200;
+		info->cache_bytes = 8388608;
+		break;
+	case 'K':
+		info->spindle_rpm = 7200;
+		info->cache_bytes = 16777216;
+		break;
+	case 'L':
+		info->spindle_rpm = 7200;
+		info->cache_bytes = 33554432;
+		break;
+	case 'P':
+		info->spindle_rpm = 5400;
+		break;
+	case 'V':
+		info->spindle_rpm = 5400;
+		info->cache_bytes = 8388608;
+		break;
+	case 'Y':
+		info->spindle_rpm = 7200;
+		break;
+	}
+	switch (suffix[3]) {
+	case 'A':
+		info->interface = HDID_INTERFACE_ATA66;
+		break;
+	case 'B':
+		info->interface = HDID_INTERFACE_ATA100;
+		break;
+	case 'C':
+		info->interface = HDID_INTERFACE_ZIF33;
+		break;
+	case 'D':
+		info->interface = HDID_INTERFACE_SATA1;
+		break;
+	case 'E':
+		info->interface = HDID_INTERFACE_ATA133;
+		break;
+	case 'F':
+		info->interface = HDID_INTERFACE_SAS11;
+		break;
+	case 'G':
+		info->interface = HDID_INTERFACE_SAS20;
+		break;
+	case 'S':
+		if (info->family == HDID_FAMILY_WD_MOBILE)
+			info->interface = HDID_INTERFACE_SATA1;
+		else
+			info->interface = HDID_INTERFACE_SATA2;
+		break;
+	case 'T':
+		info->interface = HDID_INTERFACE_SATA2;
+		break;
 	}
 }
