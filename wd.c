@@ -66,8 +66,9 @@ const char *hdid_wd_suffix(const char *model) {
 }
 
 void hdid_wd_old_internal(struct hdid_info *info, const char *model) {
-	info->nominal_megabytes = atoi(model + 2) * 100;
 	const char *suffix = hdid_wd_suffix(model);
+	info->nominal_megabytes = atoi(model + 2) * 100;
+	info->sector_bytes = 512;
 	switch (suffix[0]) {
 		case 'A':
 			info->spindle_rpm = 5400;
@@ -84,6 +85,7 @@ void hdid_wd_old_internal(struct hdid_info *info, const char *model) {
 			break;
 		case 'E':
 			info->spindle_rpm = 5400;
+			info->platters = 1;
 			break;
 		case 'F':
 			info->spindle_rpm = 10000;
@@ -104,6 +106,7 @@ void hdid_wd_old_internal(struct hdid_info *info, const char *model) {
 		case 'K':
 			info->spindle_rpm = 7200;
 			info->cache_bytes = 16777216;
+			info->family = HDID_FAMILY_WD_DESKTOP;
 			break;
 		case 'L':
 			info->spindle_rpm = 7200;
@@ -113,6 +116,7 @@ void hdid_wd_old_internal(struct hdid_info *info, const char *model) {
 			break;
 		case 'N':
 			info->spindle_rpm = 5400;
+			info->family = HDID_FAMILY_WD_PROTEGE;
 			break;
 		case 'P':
 			info->spindle_rpm = 7200;
@@ -125,28 +129,35 @@ void hdid_wd_old_internal(struct hdid_info *info, const char *model) {
 		case 'S':
 			info->spindle_rpm = 7200;
 			info->cache_bytes = 8388608;
+			info->family = HDID_FAMILY_WD_SERVER;
 			break;
 		case 'T':
 			info->spindle_rpm = 7200;
 			info->cache_bytes = 8388608;
+			info->family = HDID_FAMILY_WD_SERVER;
 			break;
 		case 'U':
 			info->spindle_rpm = 5400;
 			info->cache_bytes = 2097152;
+			info->family = HDID_FAMILY_WD_MOBILE;
 			break;
 		case 'V':
 			info->spindle_rpm = 5400;
 			info->cache_bytes = 8388608;
+			info->family = HDID_FAMILY_WD_MOBILE;
 			break;
 		case 'W':
 			info->spindle_rpm = 3600;
+			info->family = HDID_FAMILY_WD_MOBILE;
 			break;
 		case 'X':
 			info->spindle_rpm = 4200;
+			info->family = HDID_FAMILY_WD_MOBILE;
 			break;
 		case 'Y':
 			info->spindle_rpm = 7200;
 			info->cache_bytes = 16777216;
+			info->family = HDID_FAMILY_WD_SERVER;
 			break;
 		case 'Z':
 			info->spindle_rpm = 7200;

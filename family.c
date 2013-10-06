@@ -11,4 +11,6 @@ const char *const hdid_family_list[] = {
 	"Enterprise (XE or S25)",
 	"Branded",
 	"Audio/Video (AV)",
+	"Server/Enterprise",
+	"Protégé",
 };

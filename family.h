@@ -12,6 +12,8 @@ enum hdid_family_t {
 	HDID_FAMILY_WD_XE,
 	HDID_FAMILY_WD_BRAND,
 	HDID_FAMILY_WD_AV,
+	HDID_FAMILY_WD_SERVER,
+	HDID_FAMILY_WD_PROTEGE,
 };
 
 extern const char *const hdid_family_list[];
