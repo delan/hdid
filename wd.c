@@ -74,6 +74,7 @@ void hdid_wd_old_internal(struct hdid_info *info, const char *model) {
 			break;
 		case 'B':
 			info->spindle_rpm = 7200;
+			info->cache_bytes = 2097152;
 			break;
 		case 'C':
 			info->spindle_rpm = 10000;
@@ -86,18 +87,23 @@ void hdid_wd_old_internal(struct hdid_info *info, const char *model) {
 			break;
 		case 'F':
 			info->spindle_rpm = 10000;
+			info->cache_bytes = 2097152;
 			break;
 		case 'G':
 			info->spindle_rpm = 10000;
+			info->cache_bytes = 8388608;
 			break;
 		case 'H':
 			info->spindle_rpm = 10000;
+			info->cache_bytes = 4194304;
 			break;
 		case 'J':
 			info->spindle_rpm = 7200;
+			info->cache_bytes = 8388608;
 			break;
 		case 'K':
 			info->spindle_rpm = 7200;
+			info->cache_bytes = 16777216;
 			break;
 		case 'L':
 			info->spindle_rpm = 7200;
@@ -110,21 +116,27 @@ void hdid_wd_old_internal(struct hdid_info *info, const char *model) {
 			break;
 		case 'P':
 			info->spindle_rpm = 7200;
+			info->cache_bytes = 8388608;
 			break;
 		case 'R':
 			info->spindle_rpm = 10000;
+			info->cache_bytes = 8388608;
 			break;
 		case 'S':
 			info->spindle_rpm = 7200;
+			info->cache_bytes = 8388608;
 			break;
 		case 'T':
 			info->spindle_rpm = 7200;
+			info->cache_bytes = 8388608;
 			break;
 		case 'U':
 			info->spindle_rpm = 5400;
+			info->cache_bytes = 2097152;
 			break;
 		case 'V':
 			info->spindle_rpm = 5400;
+			info->cache_bytes = 8388608;
 			break;
 		case 'W':
 			info->spindle_rpm = 3600;
@@ -134,9 +146,11 @@ void hdid_wd_old_internal(struct hdid_info *info, const char *model) {
 			break;
 		case 'Y':
 			info->spindle_rpm = 7200;
+			info->cache_bytes = 16777216;
 			break;
 		case 'Z':
 			info->spindle_rpm = 7200;
+			info->cache_bytes = 2097152;
 			break;
 	}
 	switch (suffix[1]) {
