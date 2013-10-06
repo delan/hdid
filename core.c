@@ -337,6 +337,10 @@ void hdid_print(struct hdid_info info) {
 		hdid_man_list[info.manufacturer]
 	);
 	printf(
+		"Product family:         %s\n",
+		hdid_family_list[info.family]
+	);
+	printf(
 		"Spindle speed:          %d rpm\n",
 		info.spindle_rpm
 	);
@@ -351,5 +355,17 @@ void hdid_print(struct hdid_info info) {
 	printf(
 		"Form factor:            %s\n",
 		hdid_form_list[info.form]
+	);
+	printf(
+		"Sector size:            %d B\n",
+		info.sector_bytes
+	);
+	printf(
+		"Cache size:             %ld MiB\n",
+		info.cache_bytes >> 20
+	);
+	printf(
+		"Platters:               %d\n",
+		info.platters
 	);
 }

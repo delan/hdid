@@ -11,4 +11,9 @@ const char *const hdid_interface_list[] = {
 	"SATA 3.0 (22-pin, 6.0 Gbps)",
 	"IEEE 1394 (FireWire)",
 	"CompactFlash+ Type II (5 mm)",
+	"SAS 1.0 (1.5 Gbps)",
+	"SAS 1.1 (3.0 Gbps)",
+	"SAS 2.0 (6.0 Gbps)",
+	"SAS 3.0 (12.0 Gbps)",
+	"ATA (33-pin ZIF)",
 };

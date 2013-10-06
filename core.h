@@ -7,6 +7,7 @@
 #include "man.h"
 #include "interface.h"
 #include "form.h"
+#include "family.h"
 
 struct hdid_info {
 	enum hdid_man_t manufacturer;
@@ -14,6 +15,10 @@ struct hdid_info {
 	long nominal_megabytes;
 	enum hdid_interface_t interface;
 	enum hdid_form_t form;
+	int sector_bytes;
+	int platters;
+	long cache_bytes;
+	enum hdid_family_t family;
 };
 
 struct hdid_info hdid_identify(char *model);
